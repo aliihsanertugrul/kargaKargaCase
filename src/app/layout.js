@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Messenger from "@/components/common/messenger";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`h-screen ${inter.className}`}>
         <main>{children}</main>
         <Messenger/>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js" />
         </body>
     </html>
   );

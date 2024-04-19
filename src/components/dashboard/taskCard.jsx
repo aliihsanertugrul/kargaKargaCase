@@ -23,7 +23,7 @@ const TaskCard = ({ tasks, flagsData }) => {
 			swalAlert(err.message, "error");
 		}
   }
-  console.log("chosenTaskId", chosenTask);
+ 
   return (
     <div className="space-y-3 cursor-pointer">
       {tasks.map((task, index) => (
