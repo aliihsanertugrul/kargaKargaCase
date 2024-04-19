@@ -2,7 +2,6 @@
 import moment from "moment";
 import Image from "next/image";
 import React from "react";
-import { memo } from 'react'
 import { useDrag } from 'react-dnd'
 
 const TaskItem = ({ flagsData, task, setOpenModal, setChosenTask }) => {

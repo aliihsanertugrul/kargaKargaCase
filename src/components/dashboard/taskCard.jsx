@@ -6,7 +6,6 @@ import { Button, Dropdown, Modal } from "flowbite-react";
 import { usePathname } from "next/navigation";
 import { deleteTaskAction } from "@/actions/newTask-action";
 import { swalAlert, swalConfirm } from "@/helpers/swal";
-
 import TaskItem from "./taskItem";
 
 const TaskCard = ({ tasks, flagsData }) => {

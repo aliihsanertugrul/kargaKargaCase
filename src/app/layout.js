@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`h-screen ${inter.className}`}>
         <main>{children}</main>
         <Messenger/>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js" />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js" strategy="beforeInteractive"/>
         </body>
     </html>
   );
