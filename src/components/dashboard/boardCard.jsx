@@ -23,9 +23,12 @@ const BoardCard = ({ name, tasks,id, flagsData }) => {
     <>
       <div className="w-[319px] min-h-[720px] p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex items-center justify-between mb-4  border-b-2 h-14">
+          <div className="flex gap-2">
           <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-            {name}
+            {name} 
           </h5>
+          <div className=" flex items-center justify-center rounded-full w-5 h-5 text-karga-renk bg-blue-100 p-1 text-sm ring-2">{tasks?.length}</div>
+          </div>
           <a
             href="#"
             className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
