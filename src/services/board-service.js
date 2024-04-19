@@ -25,8 +25,8 @@ export const postTask =async (payload) => {
   });
 };
 
-export const putTask =async (payload) => {
-  return fetch(`${API_URL}/api/tasks/${payload.taskId}`, {
+export const putTask =async (payload,code) => {
+  return fetch(`${API_URL}/api/tasks/${code}`, {
     method: "PUT",
     body: JSON.stringify(payload),
     headers: await getAuthHeader(),

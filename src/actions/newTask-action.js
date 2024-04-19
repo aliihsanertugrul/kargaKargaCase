@@ -10,7 +10,7 @@ import {
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as Yup from "yup";
-import { deleteTask, postTask } from "@/services/board-service";
+import { deleteTask, postTask, putTask } from "@/services/board-service";
 
 const FormSchema = Yup.object({
   name: Yup.string().min(2, "At least 2 characters.").required("Required"),
@@ -53,6 +53,30 @@ console.log("******", payload)
   revalidatePath("/dashboard");
   redirect(
     `/dashboard?msg=${encodeURI("New task has been created")}`
+  );
+};
+
+export const updateNewTaskAction = async (payload,code) => {
+
+console.log("******", payload)
+  try {
+    
+    const res = await putTask(payload,code);
+    const data = await res.json();
+    console.log("posttask", data);
+    if (!res.ok) {
+      return response(false, data?.message, data?.validations);
+    }
+  } catch (err) {
+    if (err instanceof Yup.ValidationError) {
+      return getYupErrors(err.inner);
+    }
+    // satir eklendi
+    throw err;
+  }
+  revalidatePath("/dashboard");
+  redirect(
+    `/dashboard?msg=${encodeURI("Task has been updated")}`
   );
 };
 

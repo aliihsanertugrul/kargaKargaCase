@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { deleteTaskAction } from "@/actions/newTask-action";
 import { swalAlert, swalConfirm } from "@/helpers/swal";
 
+import TaskItem from "./taskItem";
+
 const TaskCard = ({ tasks, flagsData }) => {
   const pathname = usePathname();
   const [openModal, setOpenModal] = useState(false);
@@ -23,81 +25,12 @@ const TaskCard = ({ tasks, flagsData }) => {
 			swalAlert(err.message, "error");
 		}
   }
+  
  
   return (
     <div className="space-y-3 cursor-pointer">
       {tasks.map((task, index) => (
-        <button
-          type="button"
-          key={index}
-          onClick={() => {
-            setChosenTask(task);
-            setOpenModal(true);
-          }}
-          className="block text-left w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 space-y-3"
-        >
-          <h5 className="text-xs font-medium text-orange-600">{task?.name}</h5>
-          <p className="text-sm text-gri4">
-            {task?.description}
-          </p>
-          <p className="flex items-center gap-1">
-            <Image src="/images/calendar.svg" width={16} height={16} />
-            <span className="text-xs text-gri3">
-              {task ? moment(task.startDate).format("ll") : ""} -{" "}
-              {task ? moment(task.endDate).format("ll") : ""}
-            </span>
-          </p>
-          <div className="flex items-center space-x-1">
-            <Image src="/images/rectangle.svg" width={10} height={10} />
-            {flagsData.map((flagItem) => (
-              <>
-                <span className="text-xs text-gri3" key={flagItem.id}>
-                  {flagItem.id === task?.flagId ? flagItem.name : null}
-                </span>
-              </>
-            ))}
-            <span>
-              {task.flagId == 5 ? (
-                <Image
-                  key={task.id}
-                  src="/images/flagNeutral.svg"
-                  width={16}
-                  height={16}
-                />
-              ) : task.flagId == 4 ? (
-                <Image
-                  key={task.id}
-                  src="/images/flagStandart.svg"
-                  width={16}
-                  height={16}
-                />
-              ) : task.flagId == 3 ? (
-                <Image
-                  key={task.id}
-                  src="/images/flagLow.svg"
-                  width={16}
-                  height={16}
-                />
-              ) : task.flagId == 2 ? (
-                <Image
-                  key={task.id}
-                  src="/images/flagMedium.svg"
-                  width={16}
-                  height={16}
-                />
-              ) : task.flagId == 1 ? (
-                <Image
-                  key={task.id}
-                  src="/images/flagHigh.svg"
-                  width={16}
-                  height={16}
-                />
-              ) : (
-                ""
-              )}
-            </span>
-          </div>
-        </button>
+        <TaskItem flagsData={flagsData} task={task} key={index} setChosenTask={setChosenTask} setOpenModal={setOpenModal}/>
       ))}
       <Modal show={openModal} onClose={() => setOpenModal(false)}>
         <Modal.Header>
