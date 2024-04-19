@@ -10,15 +10,10 @@ const config = {
       async authorize(credentials) {
         const res = await login(credentials);
         const data = await res.json();
-        console.log("data****",data)
+        console.log(data)
         if (!res.ok) return null;
 
-        // Backend den gelen data object i daha anlasilir hale geitirildi
-        // const payload = {
-        //   user: { ...data },
-        //   accessToken: data.token.split(" ")[1],
-        // };
-        // delete payload.user.token;
+      
         return data;
       },
     }),
@@ -26,12 +21,13 @@ const config = {
   callbacks: {
     // middleware in kapsama alanina giren sayfalara yapilan isteklerden hemen once calisir
     authorized({ auth, request: { nextUrl } }) {
-      console.log("authhh",auth)
+      
       const isLoggedIn = !!auth?.user;
       const isOnLoginPage = nextUrl.pathname.startsWith("/login");
       const isOnDashboardPage = nextUrl.pathname.startsWith("/dashboard");
       const isTokenValid = getIsTokenValid(auth?.token);
-   
+      
+
      
       if (isLoggedIn && isTokenValid) {
         if (isOnDashboardPage) {
@@ -55,9 +51,7 @@ const config = {
     },
     //Session datasina ihtiyac duyan her route icin bu callback cagrilir
     async session({ session, token,user }) {
-      console.log("user", user);
-     
-      console.log("token", token);
+    
       
       const isTokenValid = getIsTokenValid(token.data.token);
       if (!isTokenValid) return null;

@@ -38,5 +38,5 @@ export const loginAction = async (prevState, formData) =>{
     }
 
     revalidatePath("/dashboard");
-	redirect(`/dashboard`);
+	redirect("/dashboard");
 }

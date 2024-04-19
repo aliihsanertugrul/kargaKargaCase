@@ -33,8 +33,8 @@ export const putTask =async (payload) => {
   });
 };
 
-export const deleteTask =async (payload) => {
-  return fetch(`${API_URL}/api/tasks/${payload.taskId}`, {
+export const deleteTask =async (code) => {
+  return fetch(`${API_URL}/api/tasks/${code}`, {
     method: "DELETE",    
     headers: await getAuthHeader(),
   });
