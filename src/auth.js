@@ -5,6 +5,8 @@ import { getIsTokenValid } from "./helpers/auth";
 
 
 const config = {
+  trustHost:true,
+  trustHostedDomain:true,
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -35,6 +37,7 @@ const config = {
           return true;
           
         } else if (isOnLoginPage) {
+          
           return Response.redirect(new URL("/dashboard", nextUrl));
         }
       } else if (isOnDashboardPage) {
