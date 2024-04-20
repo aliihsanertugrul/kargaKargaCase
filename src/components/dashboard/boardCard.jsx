@@ -50,7 +50,7 @@ const BoardCard = ({ name, tasks, id, flagsData }) => {
   const isActive = isOver && canDrop;
   let backgroundColor = "";
   if (isActive) {
-    backgroundColor = "darkgreen";
+    backgroundColor = "#90EE90";
   } else if (canDrop) {
     backgroundColor = "darkkhaki";
   }
